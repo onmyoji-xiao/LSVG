@@ -4,6 +4,6 @@
 **Feng Xiao** · **Hongbin Xu** · **Guocan Zhao** · **Wenxiong Kang**  
 *South China University of Technology*  
 
-[Code](https://github.com/onmyoji-xiao/AS3D) | [Paper]() | [Project Page]()  
+[Code](https://github.com/onmyoji-xiao/AS3D) | [Paper](#) | [Project Page](#)  
 
 </div>
