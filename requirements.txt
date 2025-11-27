@@ -1,0 +1,7 @@
+transformers
+spacy
+en_core_web_sm
+h5py
+pandas
+omegaconf
+plyfile
