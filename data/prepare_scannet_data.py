@@ -7,23 +7,15 @@ import pickle
 from tqdm import tqdm
 
 
-def scannet_loader(scan_ids, scannet, align, sample, box_pred):
+def scannet_loader(scan_ids, scannet, align, sample):
     """Helper function to load the scans in memory.
     :param scan_id:
     :return: the loaded scan.
     """
-    with open('./scannet/scannetv2_val.txt') as fs:
-        val_lines = fs.readlines()
-        val_ids = [l.strip() for l in val_lines]
     res = []
     for scan_id in tqdm(scan_ids):
         scan_i = ScannetScan(scan_id, scannet, align, load_semantic_label=True, sample=sample)
-        # scan_i.load_all_objects_by_maskcluster()
-        # scan_i.load_all_objects_by_pg()
-        if box_pred > 0 and scan_id in val_ids:
-            scan_i.load_all_objects_by_pg()
-        else:
-            scan_i.load_point_clouds_of_all_objects()
+        scan_i.load_point_clouds_of_all_objects()
         res.append(scan_i)
     return res
 
@@ -31,9 +23,9 @@ def scannet_loader(scan_ids, scannet, align, sample, box_pred):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ReferIt3D')
 
-    parser.add_argument('-scans_dir', type=str, default='/home/xf/codes/DataSet/ScanNet_PC',
+    parser.add_argument('-scans_dir', type=str, default='../DataSet/ScanNet',
                         help='the path to the downloaded ScanNet scans')
-    parser.add_argument('-save_dir', type=str, default='../../scannet',
+    parser.add_argument('-save_dir', type=str, default='./',
                         help='the path of the directory to be saved preprocessed scans as a .pkl')
 
     # Optional arguments.
@@ -43,7 +35,6 @@ if __name__ == '__main__':
     parser.add_argument('--apply-global-alignment', default=1, type=int,
                         help='rotate/translate entire scan globally to aligned it with other scans')
     parser.add_argument('--sample', type=int, default=0)
-    parser.add_argument('--box_pred', type=int, default=1)
     args = parser.parse_args()
 
     scan_ids = sorted(os.listdir(args.scans_dir))
@@ -96,7 +87,5 @@ if __name__ == '__main__':
     print('{} scans are writing...'.format(len(all_scans)))
     os.makedirs(args.save_dir, exist_ok=True)
 
-    if args.box_pred > 0:
-        filename = 'pg_'+filename
     with open(os.path.join(args.save_dir, filename), "wb") as fp_data:
         pickle.dump(all_scans, fp_data)
