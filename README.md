@@ -5,7 +5,9 @@
 *South China University of Technology*  
 
 [Code](https://github.com/onmyoji-xiao/LSVG) | [Paper](#) | [Project Page](#)  
-![image](Pipeline.png)
+
+
+![image](overview_01.jpg)
 </div>
 
 
