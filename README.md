@@ -44,6 +44,8 @@ Download CLIP features from [Goolgle Drive](https://drive.google.com/drive/folde
   clip_feats_pad0.hdf5
   scannet_00_views.pkl
 ```
+### ReferIt3D
+Download the [ReferIt3D](https://github.com/referit3d/referit3d) dataset or use our processed files in '/data'.
 
 ### Pretrained Model
 Download [Bert Model](https://huggingface.co/google-bert/bert-base-uncased/tree/main)  
